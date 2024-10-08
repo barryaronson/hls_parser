@@ -17,7 +17,7 @@ public:
       \returns Nothing
   */
   Tokenize(const std::string &line,
-           const std::regex re = std::regex(R"([:|,|=]+)"))
+           const std::regex re = std::regex(R"([:|,|=|"]+)"))
       : it{line.begin(), line.end(), re, -1}, tokenized{it, {}} {
   } // The constructor splits 'str' into a series tokens using 're' and stores
     // the sequence in 'it' so that the whole range of tokens ('it, {}') can be

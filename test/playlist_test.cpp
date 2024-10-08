@@ -3,7 +3,7 @@
 
 namespace {
 
-class TestFile : public ::testing::Test {
+class PlaylistFile : public ::testing::Test {
 protected:
   std::string tempFilename = "temp_test_file.txt";
 
@@ -15,7 +15,7 @@ protected:
 Test capability to expand input buffer if it is too small for the length of the
 line being read.
 */
-TEST_F(TestFile, BufferExpansion) {
+TEST_F(PlaylistFile, BufferExpansion) {
   std::ofstream outfile(tempFilename);
 
   ASSERT_TRUE(outfile.is_open());
@@ -34,7 +34,7 @@ TEST_F(TestFile, BufferExpansion) {
 /*
 Test that continued lines (using '\') are properly concatenated.
 */
-TEST_F(TestFile, LineContinuation) {
+TEST_F(PlaylistFile, LineContinuation) {
   // output to a file a continued line
   std::ofstream outfile(tempFilename);
   ASSERT_TRUE(outfile.is_open());
@@ -56,7 +56,7 @@ TEST_F(TestFile, LineContinuation) {
 /*
 Test that lines with trailing space are properly cleaned up.
 */
-TEST_F(TestFile, LineWithTrailingSpace) {
+TEST_F(PlaylistFile, LineWithTrailingSpace) {
   // make a file with a single line with trailing spaces
   std::ofstream outfile(tempFilename);
   ASSERT_TRUE(outfile.is_open());
@@ -77,7 +77,7 @@ TEST_F(TestFile, LineWithTrailingSpace) {
 /*
 Test that lines with a carriage return (CR or '\r') are properly cleaned up.
 */
-TEST_F(TestFile, LineWithCR) {
+TEST_F(PlaylistFile, LineWithCR) {
   // make a file with a single line with trailing spaces
   std::ofstream outfile(tempFilename);
   ASSERT_TRUE(outfile.is_open());
@@ -98,7 +98,7 @@ TEST_F(TestFile, LineWithCR) {
 /*
 Test reading multiple lines.
 */
-TEST_F(TestFile, MultipleLines) {
+TEST_F(PlaylistFile, MultipleLines) {
   // create multiple, different lines
   std::string hexChars = "0123456789ABCDEF";
   std::string line1 = hexChars;
