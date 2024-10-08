@@ -1,18 +1,18 @@
 
 #include "playlist.h"
 
-playlist::playlist(const char *fileName, size_t initialBufferSize)
+Playlist::Playlist(const char *fileName, size_t initialBufferSize)
     : std::ifstream(fileName), readBufferSize(initialBufferSize) {
-  if (is_open() != true) {
+  if (is_open() != true) { // make sure playlist got opened
     throw std::runtime_error("Could not open input file.");
   }
 
-  readBuffer = new char[readBufferSize];
+  readBuffer = new char[readBufferSize]; // set up read buffer
 }
 
-playlist::~playlist() { delete readBuffer; }
+Playlist::~Playlist() { delete readBuffer; }
 
-std::string playlist::readLine() {
+std::string Playlist::readLine() {
   std::streampos position;
   int offset = 0;
 

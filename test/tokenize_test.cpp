@@ -4,16 +4,20 @@
 
 namespace {
 
+/*
+Tokenize a simple pseudo HLS line with a tag and its attributes
+*/
 TEST(Test, Tokenize) {
-  std::string read = "tag:attribute1=1,attribute2=2";
+  std::string HLSLine = "tag:attribute1=1,attribute2=2";
+  Tokenize tokenizer(HLSLine);
+
   std::vector<std::string> expectedTokens = {"tag", "attribute1", "1",
                                              "attribute2", "2"};
-  Tokenize tokenizer(read, std::regex(R"([:|,|=]+)"));
 
   auto expected = expectedTokens.begin();
   for (auto token = tokenizer.begin(); token != tokenizer.end(); ++token) {
     EXPECT_FALSE(expected == expectedTokens.end());
-    EXPECT_EQ((*expected), (*token));
+    EXPECT_EQ((*expected), (*token)); // check that each token matches what is expected
     ++expected;
   }
 }
